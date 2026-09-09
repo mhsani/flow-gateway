@@ -1,0 +1,20 @@
+services:
+  flow-gateway:
+    # Requires a Dockerfile in the Compose project directory.
+    build:
+      context: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    networks:
+      - n8n-network
+    init: true
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  n8n-network:
+    external: true
+    name: n8n-y9jo_default
